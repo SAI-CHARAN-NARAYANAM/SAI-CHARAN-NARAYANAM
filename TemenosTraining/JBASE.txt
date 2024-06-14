@@ -1,0 +1,230 @@
+jBASE Database & Administration:
+----------------------------------
+a. Jbase is a Post Relational Database Management System.it supports multi value and subvalue
+b. they are non fixed length
+c. the development environment for jbase is called jbase BASIC
+d.jBASE is used to create compile and execute programs
+e.the extension of operation system is jsh(jshell) provided by jBase.
+f. jBase is an open database. it can communicate with other databases using Direct Connect Drivers
+g. it uses c compiler to compile code
+-----------------------------------
+Architecture of T24 Application Server
+----------------
+a. the first layer is Unix,windows Operating System
+b. Jbase is installed above operating system
+c. T24 is installed above jBase
+d. user can use terminal emulation software or T24 Browser
+----------------------------
+TAFC Directory Structure:
+-------------------------
+jBase<release.no>
+a. bin:
+contains all the binary executables that makeup the TAFC including compilers
+--
+b. config:
+contains various configuration files relating to jPML daemon 
+for creating library files and other configuration files.
+--
+c. lib:
+contains library files that are required for working in TAFC.these files contain 
+all the library files required for linking and executing jBC- compiled routines.
+--
+d. tmp:
+this is general purpose temporary directory for runtime use
+--
+e. jspooler:
+this is a spool directory of TAFC
+it contains all the files that are required for spooling to work in tafc
+this file is created as a part of the printer setup of TAFC
+we have to create this directory manually.
+--
+-----------------------------------------------------
+basic navigation of TAFC:
+-------------------------
+a. BK  	   :- from globus gets you down to jsh prompt with permission.
+b. jsh>pwd :- print working directory
+c. ls/JDIR :- list files and directory under current directory
+d. ls-l    :- list files and directories, and thier permissions
+e. more    :- used with file name to display contents of the file
+f. cd	   :- move to directory or file
+g. exit    :- exits unix
+-------------------------------------
+to change permissions of a file commands are:
+----------
+a. $chmod 777 directory	  : changes permission to rwxrwxrwx
+b. $chmod-r 777 directory : all permissions to all files in this directory and sub directories
+c. $chmod666*		  : as above excluding subdirectories
+-------------------------------------
+*jBASE contains programs,subroutoines and files.
+environment variables define where to find the above.
+Environmental Variables used to:
+a. locate files
+b. establish search paths
+c. locate programs
+d. locate subroutines
+e. locate spooler files
+------------------
+a. echo  :- it shows contents of an environment variable
+		ex: echo$HOME
+---
+b. env   :- shows all environment variables
+---
+c. jdiag :- shows all the environmental variables from a jBASE perspective
+		ex: jdiag -vl
+---
+---------------------------------------------------------------------
+* after supplying valid user name and password when they logon to the server , a port number is assigned to each user
+*jBASE assigns port when user logs in , port number are picked from "port o-499" which is present in $JBASERELEASEDIR/proc
+------
+jBASE features:
+----------------
+a. can store variable length records
+b. unlimited number of files
+c. most efficient method of data storage,access and retrieval
+---
+
+* whenever we logon to T24 running on jBASE, remote.cmd or .profile is executed
+-------------------------
+jBASE Directory Structure:
+-------------------------
+a. bin : executable files
+b. config : configuration files
+c. jspooler : spooling files
+d. lib : library files
+e. tmp : temporary files
+f. dev : external device information
+g. jbcmessages : error messages
+h. include : include files
+i. src : source code files
+------------------------------------
+JSHELL:
+-------
+it provides a command line environment 
+*
+features:
+---------
+a. easily customizable
+b. easy command recall
+--------------
+commands:
+---------
+a. jdir : list of files in a directory
+b. jrm : removes a file
+c. jmv : moves old file to new file
+-------------------
+jBASE environment variables:
+-------------------
+a. jdiag : shows all environment variables from jBASE perspective
+b. echo  : shows the contents of an environment variable
+c. JBCRELEASEDIR : path to JBASE directory
+d. JBCGLOBALDIR  : path to the jBASE directory where various configuration files are found 
+e. JBCSPOOLERDIR : contains path of the spooler directory
+f. PATH 	 : search path locating executables. contains search path for os executables.
+		   contains compiler executables.	
+g. JBCBASETMP 	 : contains the path of JBASE temp directory that stores temporary files 
+h. JBCLISTFILE   : contains path of savedlists
+ --------------------------
+FILE TYPES:
+---------------------------
+*jbase has two types of files.
+a. hashed files
+b. non-hashed file
+----------------------------
+NON-HASHED FILES:
+-----------------
+a. contains sequential files
+b. unix level directories
+c. it is used to store programs or generated reports
+d. name cannot exceed 255 chars
+e. it has only one type. i.e., UD
+----------------------------------------
+HASHED FILES:
+----------------------------------------
+a. data files are stored as hash file
+b. it uses hash algorithm to dynamically read and write data
+c. two types (i) type J3 and (ii) type J4
+d. all t24 data files are Hashed files of type J4.
+----------------------------------------------------
+*every file in jBASE contains two parts 
+a. data portion : contains records
+b. dictionary portion : contains fieldname and properties
+-----------------------------------------------------
+MODULO AND SEPARATION:
+-----------------------
+a. modulo : the data and dictionary portion of hashed files are divided into groups
+	     default size of one modulo in J3 is 1024 bytes and for J4 it is 4096
+b. Separation: the size of modulo is determined by separation. it is the multiplying factor of modulo
+---------------------------
+JQL:
+---
+JQL is a jBASE query language which allows to retrieve data from database in a 
+structured order and to present data in a flexible and easily understood format.
+it is used to process the data in the database and to generate reports.
+they are
+a. record selection for processing
+b. report formatting
+c. sorting
+d. data field manipulation capabilities
+-----------------------------------
+JQL statements
+--------------
+a. LIST: 
+   I. list: to list all the records in a file for the given fields
+	ex: LIST FBNK.CUSTOMER 
+   
+   II. list file fields: LIST FBNK.CUSTOMER MNEMONIC SHORT.NAME NAME.1
+   
+   III. explicit list: this list will select only those records which are given explicitly
+	ex: LIST FBNK.CUSTOMER "100100" "100400"
+
+   IV. list specific records: LIST FBNK.CUSTOMER WITH NAME.1 = "VAR1""VAR2"
+        LIST FBNK.CUSTOMER WITH NAME1 = "VAR1" AND WITH SHORT.NAME = "VAR2"
+        LIST FBNK.CUSTOMER WITH NAME.1 LIKE "S..."
+--------
+b. SORT:
+   I.Sort: will sort in ascending order by default and if we want to do i descending order 
+	we have to eplicitly enter the details
+   II. Sort file field by field:
+       ex: SORT FBNK.CUSTOMER BY NAME.1 NAME.2
+  	   SORT FNK.CUSTOMER BY -DSND NAME.1
+   III. BREAK-ON:
+         SORT FBNK.CUSTOMER BY NAME.1 BREAK-ON NAME.1
+	 *this command will insert a break each time the value in the Break-on field changes
+ -------------------------
+c. COUNT: this command is used to count the total number of records in a file
+---------
+d. SUPPRESS : DET-SUPP, details suppress
+	      ID-SUPP, suppress the record ID from being displayed at first field
+------------
+e. ESEARCH : this command will search for string RADAR in globus BP
+--------------------------------------------------------------------
+UTILITIES
+-------------------
+a. COMO: it is used to record the details which takes place in the terminal
+         directory : &COMO&
+	 during COB process, COMO will be initiated automatically and records agent details
+b. WHERE: it displays the details of processes executing jbase programs 
+c. WHO: displays port number and current process
+d. AUTOLOGOUT: it enables a session to be logout automatically
+		ex: AUTOLOGOUT -n ; n represents number of minutes
+e. CT : it displays record from a file in a terminal.
+	ex: CT <filename><record.id>
+f. SHOW-ITEM-LOCKS: it displays details of items that are locked in jbase hashed files 
+			ex: SHOW-ITEM-LOCKS
+g. CLEAR-ITEM-LOCKS: it clears a specific or all locks against specific file and only used with jbase hashed file
+
+-------------------
+TOOLS:
+---------------
+a. JSHOW: 
+   used to find data files,programs and subroutines
+   syntax: jshow -options name
+           a. displays subroutine names in a shared objects
+	   c. display compile time and source file
+	   f. file name search only
+	   h. display help for jshow
+           p. program name only search
+           s. subroutine name only search	
+
+    
+		

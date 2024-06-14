@@ -1,0 +1,20 @@
+public table sample {
+    t24 : SAMPLE
+    fields:
+    {
+        PgSample1(PG.SAMPLE.1) = 1
+        PgSample2(PG.SAMPLE.2) = 2
+        PgReserved1(PG.RESERVED.1) = 3
+        PgReserved2(PG.RESERVED.2) = 4
+        PgOverride(PG.OVERRIDE) = 246
+        PgRecordStatus(PG.RECORD.STATUS) = 247
+        PgCurrNo(PG.CURR.NO) = 248
+        PgInputter(PG.INPUTTER) = 249
+        PgDateTime(PG.DATE.TIME) = 250
+        PgAuthoriser(PG.AUTHORISER) = 251
+        PgCoCode(PG.CO.CODE) = 252
+        PgDeptCode(PG.DEPT.CODE) = 253
+        PgAuditorCode(PG.AUDITOR.CODE) = 254
+        PgAuditDateTime(PG.AUDIT.DATE.TIME) = 255
+    }
+}

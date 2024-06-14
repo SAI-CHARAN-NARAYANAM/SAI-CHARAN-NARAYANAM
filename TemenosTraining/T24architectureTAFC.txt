@@ -1,0 +1,84 @@
+untilT24 Architecture Evolution.
+***************************
+A. client server architecture
+------------------------------
+a.T24 is previously called as GLOBUS which has client-server Architecture.
+b.database used in GLOBUS is uniVerse,an IBM product which is installed in application server.
+c.so the client used terminal emulation software to connect to the software.
+d.a Terminal Emulation software is a Text terminal such as command line interface.
+e. all client machines are connected to globus server using telnet protocol
+f. when you login to globus you will see character user interface which is also called as CLASSIC.
+   which is used to login to browser.
+g. after Login you will see Application Prompt where enter the application names to perform action
+--------------------------------------------------------
+B. JBASE
+--------------------------------------------------------
+a. globus now moved away from character user interface to Graphical user interface called GLOBUS DESKTOP
+b. GLOBUS DESKTOP is written in VISUAL BASIC programming language.
+c. there should be a physical connection to connect with GLOBUS DESKTOP server
+d. and the connection is TELNET CONNECTION.
+e. client machines has to be deployed GLOBUS DESKTOP without any business logic and can access data
+ 
+until R7 release we used GLOBUS DESKTOP after that we used CLASSIC INTERFACE and WEB BROWSER to access T24.
+
+from R04 release onwards T24 drastically changed. 
+----------------------------------------------------
+C.T24 architecture:
+----------------------------------------------------
+a. a web browser software like internet explorer or mozilla firefox can now be used as USER INTERFACE
+b. due to this there are many layers added to T24 Architecture.
+c. T24 is now intranet based Browser solution
+d. front-end to T24 is now T24 Browser.
+e. any request coming from browser will be forwarded to T24 application server.
+f. there are four layers in T24 Architecture
+   i. Client- 
+   ii. Webserver Layer - this will have Web applications like mozilla. it will accept the request and sends back the response
+   iii.Application Server Layer- it will have T24 software and it will process the request and sends the response to web server
+   iv. Database Server Layer. - it will store the results and T24 data.
+ --------------------------------------
+D.ADVANTAGES:
+---------------------------------------
+a. Stateless Connection
+b. Resilience
+c. Scalability
+d. Ease of Deployement
+--------------------------------------------------------------------
+D.MULTI-TIER ARCHITECTURE
+---------------------------------------
+Layers in multi-tier Architecture
+---------------------------------------
+a. client
+   a.1. Web Browser
+	-this layer will have Internet Explorer or Mozilla Firefox to recieve input from client
+------------
+b. Web Server Layer
+   b.1. Web Server Software- it will handle http request coming from browser and respond with a http response
+   b.2. T24 Browser Servlet- it will contain T24 browser logic. it converts HTTP into BroserXML request and passes to temenos connector client
+   b.3. Temenos Connector Client - this will forward the request to T24 Application Server
+-------------
+c. Temenos Application Server Layer
+   c.1. Temenos Connector Server - this is written in java. this uses Temenos Server Session to send request to T24
+   c.2. T24 Runtime- it refers to T24 Business Logic it comes with OFS Module
+   c.3. JBASE- it provides runtime to T24 which has JBASE BASIC language used for local Development
+   c.4. Direct Connect Drivers- it is used to communicate to external database
+-------------
+d. Database Server Layer
+   d. Oracle/DB2. these are the databases where T24 data will reside in XML format
+--------------------------------------------
+*******************************************
+T24 can handle three message formats they are
+a. BrowserXML
+b.OFSML
+c.OFS
+-------------------
+*Network Dispatcher:
+-this is third party software used to distribute HTTP requests to web servers.
+-it is also known as Load Balancer. it will eliminate single point failure
+-------------------
+*MQ:
+Message Queuing : it enables storing and forwarding the messages
+-this will present in between TCC(Temenos Connector Client) and TCS(Temenos Connector Server)
+mgput(tcc posts request to mq) and mgget(tcs gets request from mq)
+*-----------------------------------------------------------------------------------------------
+
+interview questions if any:

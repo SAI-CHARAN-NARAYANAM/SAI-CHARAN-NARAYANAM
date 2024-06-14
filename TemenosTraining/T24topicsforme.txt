@@ -1,0 +1,31 @@
+Temenos-
+T24
+-------------------------------------------------------------
+1. TAFC					2.TAFJ
+a.Architecture				 a. Architecture
+b.libraries,environment variable	 b. Design Studio,jShell
+c.Teraterm 				 c. .jars,nopackage.jar
+*------------------------------------common to TAFC and TAFJ------------------------------------------------
+d.common variables
+e.Template designing and type of templates
+f.template routines
+g.MODULES
+  i.Customer
+  ii.Account
+  iii.customer.account
+  iv.Funds.transfer
+  v.loans and deposits
+h. Versions
+i. Version routines
+j. Enquiry
+k. Enquiry routines
+l. Nofile enquiry
+m. Dealslips
+n. Deal slip routines
+o. OFS and types of OFS
+p. OFS routines
+q. Services in T24
+r. Batch Application
+s. Multi Thread Routines
+t. COB
+  

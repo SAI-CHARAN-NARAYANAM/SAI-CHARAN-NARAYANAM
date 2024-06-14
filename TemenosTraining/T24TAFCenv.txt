@@ -1,0 +1,87 @@
+T24 Directory and file System
+*******************************
+T24 Directory Structure
+-----------------------
+
+a.bnk: it is a parent directory.
+..
+b.bnk.data: it will hold all the t24 data files.it contains subdirectories.
+	    each subdirectory refer to various products installed. 
+	i.ac
+	ii.fx
+	iii.eb
+..
+c.bnk.dict: it will hold all the dictionary files.
+..
+d.bnk.run: home directory for all the t24 users
+	i.globusbin
+	ii.globuslib :- it will store all the business logic
+	iii.bin
+	iv.lib: lib and bin will store all the local development business logic.
+..
+e.bnk.help: in this directory all the help files are installed
+..
+f.bnk.jnl: it holds the F.JOURNAL file which is an application log file which captures all the user input in T24.
+	   only 20 transaction data are stored in this file.
+..
+g.bnk.backup: T24 backup can be stored here.
+------------------------------------------------------------------------------------------------------------------
+File Types:
+********************
+a. Live Files : it holds all the live files
+..
+b. Unauthorized files: it stores unauthorized files in ApplicationName$NAU application. 
+..
+c. History File: holds copies of Authorized records
+		Id format: <record.id>;<sequence.no/curr.no>
+--------------------------------------------------------------------------------------
+basic commands:
+---------------
+a. list authorized records: APPLICATION L.
+b. list unauthorized records: APPLICATION E
+c. list history records: APPLICATION L;
+--------------------------------------------------
+******************************************
+FILE CLASSIFICATION IN T24
+******************************************
+a. all banks have branches, in T24 they are called COMPANIES
+b. T24 supports multi company operations
+c. when banks receive file containing T24, it will have only one company called HEAD OFFICE
+d.before creating companies, the decision to be taken are 
+    i. Local Currency of each company
+    ii. Company Name and Mnemonic
+e. we can create two companies in T24
+    i.lead companies : they will have thier own set of financial information
+    ii.branch companies : this will share lead company files
+f.Lead and Branch companies will have a record in the COMPANY application.
+---------------------------------------------------------------------------
+T24 Application classification:
+-------------------------
+a. T24's Application are broadly divided into three types
+	i.CUS
+	ii.FIN
+	iii.INT
+b. if we want to get the classification of any application we get in FILE.CONTROL application 
+-------
+CUS Files:
+--
+a. CUS type files will store all customer related data
+b. these files can be shared between lead companies and its branches
+c. different lead companies also can share the same files
+d. name of the files for this type of applications follow syntax F<MNEMONIC>.<APPLICATION>
+E. MNEMONIC refers to company mnemonic because each company has its own file.
+	ex. FBNK>CUSTOMER
+----------------
+FIN Files:
+---
+a. these type of applications hold financial data
+b. a lead company will have its own fin files and branch will access that files
+c. the naming convention of these files will be F<MNEMONIC>.<APPLICATION>
+------------------
+INT Files:
+-----
+a. INT type files are implementation specific
+b. they do not belong to particular company.
+c. all companies can access these applications
+d. the naming convenction is F.<APPLICATION> as INT files are not company specific
+e. ex:F.SPF,F.DATES,F.COMPANY
